@@ -20,7 +20,7 @@ Lightweight and dependency-free,
    -   **Parameters:**
     
     -   `file` — The file object to be uploaded.
-        
+     
     -   `array` — Defines to which array files will be saved.
         
 -   **Returns:**
@@ -48,4 +48,109 @@ Lightweight and dependency-free,
     
     -   Cancels an ongoing file upload. Once canceled, the file upload stops immediately. It's also used to delete files from array
 
+# Example of usage on the HTML page
+
+    <!DOCTYPE  html>
+
+    <html>
+    
+	    <head>
+	    
+		    <script  src="FileWind.js"></script>
+	    
+	    </head>
+	    
+	    <body>
+	    
+		    <form>
+		    
+		    <input  id="inputid"  type="file"  multiple>
+		    
+		    </form>
+		    
+		    <button  onclick="upload()">Upload files</button>
+		    
+		    <ul  id="fileList"></ul>
+	    
+	      
+	    
+	    <script>
+	    
+		    let  array = [];
+		    
+		      
+		    
+		    const  fileLibrary = new  FileWind();
+		    
+		      
+		    
+		    function  upload() {
+		    
+			    const  input = document.getElementById("inputid");
+			    
+			    for (let  i = 0; i < input.files.length; i++) {
+			    
+				    const  file = input.files[i];
+				    
+				    const  fileId = fileLibrary.loadFile(file, array);
+				    
+				    const  li = document.createElement("li");
+				    
+				    li.id = "file-" + fileId;
+				    
+				    const  fileName = document.createElement("span");
+				    
+				    fileName.textContent = file.name + " - ";
+				    
+				    const  progressSpan = document.createElement("span");
+				    
+				    progressSpan.textContent = "0%";
+				    
+				    progressSpan.id = "progress-" + fileId;
+				    
+				    const  removeBtn = document.createElement("button");
+				    
+				    removeBtn.textContent = "Remove";
+				    
+				    removeBtn.onclick = () =>  removeFile(fileId);
+				    
+				    li.appendChild(fileName);
+				    
+				    li.appendChild(progressSpan);
+				    
+				    li.appendChild(removeBtn);
+				    
+				    document.getElementById("fileList").appendChild(li);
+				    
+				    const  interval = setInterval(() => {
+				    
+					    const  progress = fileLibrary.getUploadProgress(fileId);
+					    
+					    progressSpan.textContent = progress + "%";
+					    
+					    if (progress >= 100) clearInterval(interval);
+			    
+				    }, 500);
+		    
+		    }
+		    
+		    input.value = "";
+		    
+		    }
+		    
+		    function  removeFile(fileId) {
+		    
+			    fileLibrary.cancelUpload(fileId);
+			    
+			    const  li = document.getElementById("file-" + fileId);
+			    
+			    if (li) li.remove();
+		    
+		    }
+	    
+	    </script>
+	    
+	    </body>
+    
+    </html>
 
