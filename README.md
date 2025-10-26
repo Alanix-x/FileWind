@@ -23,7 +23,6 @@ Lightweight and dependency-free,
    -   **Parameters:**
     
     -   `file` — The file to be uploaded.
-     
     -   `array` — Defines to which array files will be saved.
         
 -   **Returns:**
