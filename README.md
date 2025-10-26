@@ -19,7 +19,7 @@ Lightweight and dependency-free,
     
    -   **Parameters:**
     
-    -   `file` — The file object to be uploaded.
+    -   `file` — The file to be uploaded.
      
     -   `array` — Defines to which array files will be saved.
         
@@ -36,6 +36,16 @@ Lightweight and dependency-free,
 -   **Returns:**
     
     -   `progress` — The current upload progress as a percentage (0–100).
+ 
+# Method formatFileSize
+`let size = fileLibrary.formatFileSize(file);`
+-   **Parameters:**
+    
+    -   `file` — File to check size
+        
+-   **Returns:**
+    
+    -   `size` — Formatted file size, e.g. instead of 1024 MB it will be written 1 GB
 
 # Method cancelUpload
 
@@ -84,59 +94,34 @@ Lightweight and dependency-free,
 		    
 		      
 		    
-		    function  upload() {
-		    
-			    const  input = document.getElementById("inputid");
-			    
-			    for (let  i = 0; i < input.files.length; i++) {
-			    
-				    const  file = input.files[i];
-				    
-				    const  fileId = fileLibrary.loadFile(file, array);
-				    
-				    const  li = document.createElement("li");
-				    
-				    li.id = "file-" + fileId;
-				    
-				    const  fileName = document.createElement("span");
-				    
-				    fileName.textContent = file.name + " - ";
-				    
-				    const  progressSpan = document.createElement("span");
-				    
-				    progressSpan.textContent = "0%";
-				    
-				    progressSpan.id = "progress-" + fileId;
-				    
-				    const  removeBtn = document.createElement("button");
-				    
-				    removeBtn.textContent = "Remove";
-				    
-				    removeBtn.onclick = () =>  removeFile(fileId);
-				    
-				    li.appendChild(fileName);
-				    
-				    li.appendChild(progressSpan);
-				    
-				    li.appendChild(removeBtn);
-				    
-				    document.getElementById("fileList").appendChild(li);
-				    
-				    const  interval = setInterval(() => {
-				    
-					    const  progress = fileLibrary.getUploadProgress(fileId);
-					    
-					    progressSpan.textContent = progress + "%";
-					    
-					    if (progress >= 100) clearInterval(interval);
-			    
-				    }, 500);
-		    
-		    }
-		    
-		    input.value = "";
-		    
-		    }
+			function upload() {
+				const input = document.getElementById("inputid");
+			    for (let i = 0; i < input.files.length; i++) {
+			      const file = input.files[i];
+			      const fileId = fileLibrary.loadFile(file, array);
+			      let size = fileLibrary.formatFileSize(file);
+			      const li = document.createElement("li");
+			      li.id = "file-" + fileId;
+			      const fileName = document.createElement("span");
+			      fileName.textContent = file.name + " - " +"size: " + size + " - ";
+			      const progressSpan = document.createElement("span");
+			      progressSpan.textContent = "0%";
+			      progressSpan.id = "progress-" + fileId;
+			      const removeBtn = document.createElement("button");
+			      removeBtn.textContent = "Remove";
+			      removeBtn.onclick = () => removeFile(fileId);
+			      li.appendChild(fileName);
+			      li.appendChild(progressSpan);
+			      li.appendChild(removeBtn);
+			      document.getElementById("fileList").appendChild(li);
+			      const interval = setInterval(() => {
+			        const progress = fileLibrary.getUploadProgress(fileId);
+			        progressSpan.textContent = progress + "%";
+			        if (progress >= 100) clearInterval(interval);
+			      }, 500);
+			    }
+			    input.value = "";
+			}
 		    
 		    function  removeFile(fileId) {
 		    
