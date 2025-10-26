@@ -20,14 +20,12 @@ Lightweight and dependency-free,
     let fileId = fileLibrary.loadFile(file, array);
 ```
     
-	- **Parameters:**
-	  - `file` — The file to be uploaded.
-	  - `array` — Defines to which array files will be saved.
-	
-	        
--   **Returns:**
-    
-    -   `fileId` — A unique identifier for the uploaded file, used for tracking progress or canceling the upload.\
+- **Parameters:**
+  - `file` — The file to be uploaded.
+  - `array` — Defines to which array files will be saved.
+- **Returns:**
+  - `fileId` — A unique identifier for the uploaded file, used for tracking progress or canceling the upload.
+
 
 # Method getUploadProgress
 ```js
