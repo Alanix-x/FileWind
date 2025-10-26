@@ -16,8 +16,9 @@ Lightweight and dependency-free,
     const fileLibrary = new FileWind();
 ```
 # Method loadFile
-
+```js
     let fileId = fileLibrary.loadFile(file, array);
+```
     
    -   **Parameters:**
     
@@ -30,7 +31,9 @@ Lightweight and dependency-free,
     -   `fileId` — A unique identifier for the uploaded file, used for tracking progress or canceling the upload.\
 
 # Method getUploadProgress
-`let progress = fileLibrary.getUploadProgress(fileId);`
+```js
+	let progress = fileLibrary.getUploadProgress(fileId);
+```
 -   **Parameters:**
     
     -   `fileId` — The unique identifier of the file returned by `loadFile`.
@@ -40,7 +43,9 @@ Lightweight and dependency-free,
     -   `progress` — The current upload progress as a percentage (0–100).
  
 # Method formatFileSize
-`let size = fileLibrary.formatFileSize(file);`
+```js
+	let size = fileLibrary.formatFileSize(file);
+```
 -   **Parameters:**
     
     -   `file` — File to check size
@@ -50,8 +55,9 @@ Lightweight and dependency-free,
     -   `size` — Formatted file size, e.g. instead of 1024 MB it will be written 1 GB
 
 # Method cancelUpload
-
+```js
     fileLibrary.cancelUpload(fileId);
+```
 -   **Parameters:**
     
     -   `fileId` — The unique identifier of the file returned by `loadFile`.
@@ -61,7 +67,7 @@ Lightweight and dependency-free,
     -   Cancels an ongoing file upload. Once canceled, the file upload stops immediately. It's also used to delete files from array
 
 # Example of usage on the HTML page
-
+```html
     <!DOCTYPE  html>
 
     <html>
@@ -136,6 +142,7 @@ Lightweight and dependency-free,
 		    }
 	    
 	    </script>
+```
 	    
 	    </body>
     
