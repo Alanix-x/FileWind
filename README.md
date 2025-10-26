@@ -12,8 +12,9 @@ Lightweight and dependency-free,
 <script src="FileWind.js"></script>
 ```
 # Initializing a new instance of the library
-
+```js
     const fileLibrary = new FileWind();
+```
 # Method loadFile
 
     let fileId = fileLibrary.loadFile(file, array);
