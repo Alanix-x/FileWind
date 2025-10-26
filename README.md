@@ -9,7 +9,8 @@ Lightweight and dependency-free,
 
 # Importing the library
 
-    <script src="FileWind.js"></script>
+    ```html
+	<script src="FileWind.js"></script>
 # Initializing a new instance of the library
 
     const fileLibrary = new FileWind();
